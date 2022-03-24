@@ -1,5 +1,5 @@
 const {Client, Intents, ClientPresence, ReactionUserManager} = require('discord.js');
-const {token} = require('./config.json');
+//const {token} = require('./config.json');
 const fetch = require('node-fetch');
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS]});
