@@ -1,5 +1,6 @@
 const {Client, Intents, ClientPresence, ReactionUserManager} = require('discord.js');
 //const {token} = require('./config.json');
+require ('dotenv').config()
 const fetch = require('node-fetch');
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS]});
@@ -17,12 +18,8 @@ client.on('interactionCreate', async interaction => {
     if (commandName === "floorprice"){
         await interaction.deferReply();
         const collection = interaction.options.getString('collection');
-        //const query = new URLSearchParams({collection});
-        //console.log(query)
         const data = await fetch(`https://api-mainnet.magiceden.dev/v2/collections/${collection}/stats`)
             .then(response => response.json());
-        
-        console.log(data.floorPrice);
         
         const floorPriceInSol = data.floorPrice/1000000000;
         if(!data){
